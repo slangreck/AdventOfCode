@@ -11,12 +11,23 @@ def main():
 
     numbers = [int(line) for line in lines]
 
+    sum = 0
+    partCount = 0
+
+    if len(sys.argv) == 3:
+        sum = int(sys.argv[1])
+        partCount = int(sys.argv[2])
+    else:
+        sum = int(input('Sum to search: '))
+        partCount = int(input('Number of parts of the sum: '))
+
     try:
-        (indexA, indexB, indexC) = findSum(numbers, 2020, 3)
-        print(f'{indexA}: {numbers[indexA]}')
-        print(f'{indexB}: {numbers[indexB]}')
-        print(f'{indexC}: {numbers[indexC]}')
-        print(f'Product: {numbers[indexA] * numbers[indexB] * numbers[indexC]}')
+        indices = findSum(numbers, sum, partCount)
+        product = 1
+        for index in indices:
+            print(f'{index}: {numbers[index]}')
+            product *= numbers[index]
+        print(f'Product: {product}')
     except:
         print('Could not find a solution')
 
