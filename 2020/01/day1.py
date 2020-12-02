@@ -1,11 +1,14 @@
 import sys
 
 def main():
-    if sys.stdin.isatty():
-        print('Please pipe input into stdin')
-        exit()
+    file = sys.stdin
+    if file.isatty():
+        filename = input('Input file name: ')
+        file = open(filename)
     
-    lines = sys.stdin.readlines()
+    lines = file.readlines()
+    file.close()
+
     numbers = [int(line) for line in lines]
 
     try:
