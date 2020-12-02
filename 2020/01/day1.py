@@ -22,6 +22,9 @@ def main():
 
 
 def findSum(numbers, sum, partCount = 2, start = 0):
+    if partCount < 2:
+        raise ValueError('partCount must not be smaller than 2')
+
     for i in range(len(numbers)):
         search = sum - numbers[i]
 
