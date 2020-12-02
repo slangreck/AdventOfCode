@@ -10,9 +10,9 @@ def main():
 
     try:
         (indexA, indexB) = findSum(numbers, 2020)
-        print('{0}: {1}'.format(indexA, numbers[indexA]))
-        print('{0}: {1}'.format(indexB, numbers[indexB]))
-        print('{0}: {1}'.format('Product', numbers[indexA] * numbers[indexB]))
+        print(f'{indexA}: {numbers[indexA]}')
+        print(f'{indexB}: {numbers[indexB]}')
+        print(f'Product: {numbers[indexA] * numbers[indexB]}')
     except:
         print('Could not find a solution')
 
