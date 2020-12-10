@@ -8,16 +8,20 @@ def main():
         file = open(filename)
 
     lines = file.readlines()
+    boardingPasses = [BoardingPass(line) for line in lines]
+    boardingPasses.sort(key = lambda boardingPass: boardingPass.seatID)
+    
+    print(f'Highest seat ID is {boardingPasses[-1]. seatID}')
 
-    highest = 0
-    for line in lines:
-        boardingPass = BoardingPass(line)
-        highest = boardingPass.seatID if boardingPass.seatID > highest else highest
+    seatIDs = [boardingPass.seatID for boardingPass in boardingPasses]
 
-    print(f'Highest seat ID is {highest}')
+    for seatID in range(1, 127 * 8 + 7 -1):
+        if seatID not in seatIDs and (seatID - 1) in seatIDs and (seatID + 1) in seatIDs:
+            print(f'There is a free seat with ID {seatID}')
 
 class BoardingPass:
     def __init__(self, seatcode):
+        seatcode = seatcode.strip()
         self.seatcode = seatcode
         self.row = self.__decodeRow(seatcode[:-3])
         self.column = self.__decodeColumn(seatcode[-3:])
