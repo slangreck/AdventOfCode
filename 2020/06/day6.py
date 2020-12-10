@@ -10,13 +10,17 @@ def main():
 
     groups = text.split('\n\n')
 
-    uniqueAnswers = [set(''.join(group.split())) for group in groups]
+    answerLists = [[set(answer.strip()) for answer in group.split()] for group in groups]
 
-    sum = 0
-    for answer in uniqueAnswers:
-        sum += len(answer)
+    anySum = 0
+    everySum = 0
+    for answerList in answerLists:
+        if len(answerList) > 0:
+            anySum += len(set.union(*answerList))
+            everySum += len(set.intersection(*answerList))
 
-    print(sum)
+    print(f'Sum of questions any person answered yes: {anySum}')
+    print(f'Sum of questions every person answered yes: {everySum}')
 
 if __name__ == "__main__":
     main()
